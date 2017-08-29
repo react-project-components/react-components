@@ -1,0 +1,19 @@
+@import "../variables";
+
+.overlay {
+  background-color: black;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  transition: opacity $animation-duration $animation-curve-default;
+  width: 100vw;
+
+  &.active {
+    opacity: 0.6;
+    pointer-events: all;
+  }
+}

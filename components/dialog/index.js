@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import Portal from '../hoc/Portal';
 import Overlay from '../overlay';
 import ActivableRenderer from '../hoc/ActivableRenderer';
+import './theme.scss';
 
 class Dialog extends Component {
     static defaultProps = {
@@ -21,7 +22,7 @@ class Dialog extends Component {
         const className = classnames('dialog', {'active': props.active,}, props.className);
 
         return (
-            <Portal className='wrapper'>
+            <Portal className='dialog-wrapper'>
                 <Overlay
                     active={props.active}
                     onClick={props.onOverlayClick}
@@ -31,7 +32,7 @@ class Dialog extends Component {
                     onMouseUp={props.onOverlayMouseUp}
                 />
                 <div data-react-toolbox="dialog" className={className}>
-                    <section role="body">
+                    <section role="body" className="dialog-body">
                         {props.title ? <h6 className='dialog-title'>{props.title}</h6> : null}
                         {props.children}
                     </section>
@@ -65,4 +66,4 @@ Dialog.propTypes = {
 };
 
 
-export default ActivableRenderer(Dialog);
+export default ActivableRenderer()(Dialog);

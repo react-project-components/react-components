@@ -40,15 +40,17 @@ module.exports = {
                             options: {
                                 sourceMap: true
                             }
-                        }, {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                                plugins: [
-                                    require('postcss-cssnext')
-                                ]
-                            }
-                        }, {
+                        },
+                        // {
+                        //     loader: 'postcss-loader',
+                        //     options: {
+                        //         sourceMap: true,
+                        //         plugins: [
+                        //             require('postcss-cssnext')
+                        //         ]
+                        //     }
+                        // },
+                        {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: true

@@ -1,14 +1,15 @@
 @import '../variables';
 
-.wrapper {
+.dialog-wrapper {
   align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100vw;
-  z-index: var(--z-index-higher);
+  z-index: $z-index-higher;
 
   @include reset;
 }
@@ -22,28 +23,17 @@
   max-height: 96vh;
   max-width: 96vw;
   opacity: 0;
-  overflow: hidden;
+  overflow: auto;
   transform: translateY(-40px);
-  transition:
-          opacity var($animation-duration) var($animation-curve-default),
-          transform var($animation-duration) var($animation-curve-default);
-  transition-delay: var($animation-delay);
+  transition: all $animation-duration $animation-curve-default;
+  transition-property: opacity, transform;
+  transition-delay: $animation-delay;
 
   &.active {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-.normal {
-  max-height: 100vh;
-  max-width: 100vw;
-}
-
-.large {
-  width: 96vw;
-}
-
 
 .dialog-title {
   color: black;

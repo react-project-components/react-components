@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './style/index.css';
-import DialogTest from './components/Dialog';
+import Dialog from './components/Dialog';
+import Popover from './components/Popover';
 
 
 ReactDOM.render(
-    <div><DialogTest /></div>, document.getElementById('root'));
+    <div>
+        <Dialog/>
+        <Popover/>
+    </div>,
+    document.getElementById('root'));

@@ -40,7 +40,7 @@ class Popover extends Component {
         this.setState({visible: false});
     };
 
-    triggerRef = (r) => {
+    triggerRefFun = (r) => {
         this.triggerRef = r;
     }
 
@@ -48,13 +48,12 @@ class Popover extends Component {
         const box = this.triggerRef.getBoundingClientRect();
 
         return {
-            x: box.top + window.pageYOffset - document.documentElement.clientTop,
-            y: box.left + window.pageXOffset - document.documentElement.clientLeft,
+            top: box.top + window.pageYOffset - document.documentElement.clientTop,
+            left: box.left + window.pageXOffset - document.documentElement.clientLeft,
             height: box.height,
             width: box.width
         }
     }
-
 
     render() {
         const {trigger, content} = this.validateChildren();
@@ -66,7 +65,8 @@ class Popover extends Component {
             React.cloneElement(trigger, {
                 key: 'trigger',
                 type,
-                triggerRef: this.triggerRef,
+                visible: state.visible,
+                triggerRef: this.triggerRefFun,
                 open: this.open,
                 close: this.close
             }),

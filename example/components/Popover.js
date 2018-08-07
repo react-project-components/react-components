@@ -7,14 +7,6 @@ export default class PopoverTest extends React.Component {
         active: false
     };
 
-    handleToggle = () => {
-        this.setState({active: !this.state.active});
-    }
-
-    actions = [
-        {label: "Cancel", onClick: this.handleToggle},
-        {label: "Save", onClick: this.handleToggle}
-    ];
 
     render() {
         return (
@@ -25,9 +17,7 @@ export default class PopoverTest extends React.Component {
                     </Popover.Trigger>
 
                     <Popover.Content>
-                        <div>
-                            <span>content</span>
-                        </div>
+                        <span>content</span>
                     </Popover.Content>
                 </Popover>
             </div>

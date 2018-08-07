@@ -14,12 +14,17 @@ class Trigger extends Component {
         }
     }
 
-    onMouseEnter = () => {
-        this.props.open();
-    }
+    // onMouseEnter = () => {
+    //     this.props.open();
+    // }
+    //
+    // onMouseLeave = () => {
+    //     this.props.close();
+    // }
 
-    onMouseLeave = () => {
-        this.props.close();
+    onClick = () => {
+        this.props.visible ? this.props.close() : this.props.open();
+        ;
     }
 
     render() {
@@ -29,8 +34,9 @@ class Trigger extends Component {
           <div
               ref={props.triggerRef}
               className='rc-popover-trigger'
-              onMouseEnter={this.onMouseEnter}
-              onMouseLeave={this.onMouseLeave}
+              onClick={this.onClick}
+              // onMouseEnter={this.onMouseEnter}
+              // onMouseLeave={this.onMouseLeave}
           >
               {
                   props.children

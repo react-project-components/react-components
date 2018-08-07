@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
-import Portal from '../hoc/Portal';
 import Overlay from '../overlay';
 import ActivableRenderer from '../hoc/ActivableRenderer';
 import './theme.scss';
@@ -22,28 +22,31 @@ class Dialog extends Component {
         const className = classnames('dialog', {'active': props.active,}, props.className);
 
         return (
-            <Portal className='dialog-wrapper'>
-                <Overlay
-                    active={props.active}
-                    onClick={props.onOverlayClick}
-                    onEscKeyDown={props.onEscKeyDown}
-                    onMouseDown={props.onOverlayMouseDown}
-                    onMouseMove={props.onOverlayMouseMove}
-                    onMouseUp={props.onOverlayMouseUp}
-                />
-                <div data-react-toolbox="dialog" className={className}>
-                    <section role="body" className="dialog-body">
-                        {props.title ? <h6 className='dialog-title'>{props.title}</h6> : null}
-                        {props.children}
-                    </section>
-                    {actions.length
-                        ? <nav className='dialog-navigation'>
-                            {actions}
-                        </nav>
-                        : null
-                    }
-                </div>
-            </Portal>
+            ReactDOM.createPortal(
+                <div className='dialog-wrapper'>
+                    <Overlay
+                        active={props.active}
+                        onClick={props.onOverlayClick}
+                        onEscKeyDown={props.onEscKeyDown}
+                        onMouseDown={props.onOverlayMouseDown}
+                        onMouseMove={props.onOverlayMouseMove}
+                        onMouseUp={props.onOverlayMouseUp}
+                    />
+                    <div className={className}>
+                        <section role="body" className="dialog-body">
+                            {props.title ? <h6 className='dialog-title'>{props.title}</h6> : null}
+                            {props.children}
+                        </section>
+                        {actions.length
+                            ? <nav className='dialog-navigation'>
+                                {actions}
+                            </nav>
+                            : null
+                        }
+                    </div>
+                </div>,
+                document.body
+            )
         );
     }
 }

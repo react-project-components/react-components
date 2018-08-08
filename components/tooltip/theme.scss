@@ -1,0 +1,15 @@
+@import '../variables.scss';
+
+.tooltip-wrapper {
+  padding: 6px 8px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity $animation-duration $animation-curve-default;
+
+  &.active {
+    opacity: 1;
+  }
+}

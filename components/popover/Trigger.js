@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ActivableRenderer from '../hoc/ActivableRenderer';
-import classnames from 'classnames';
 
 class Trigger extends Component {
     static defaultProps = {
         type: 'hover',
-        triggerRef: f => f,
-        setPopupContentVisible: f => f
+        triggerRef: f => f
     };
 
     constructor(props) {
@@ -34,4 +31,4 @@ class Trigger extends Component {
     }
 }
 
-export default ActivableRenderer()(Trigger);
+export default Trigger;

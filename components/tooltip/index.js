@@ -1,10 +1,10 @@
+import './theme.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../popover';
 
 class ToolTip extends Component {
     static defaultProps = {};
-
 
     render() {
         const props = this.props;
@@ -13,7 +13,7 @@ class ToolTip extends Component {
                 <Popover.Trigger>
                     {props.children}
                 </Popover.Trigger>
-                <Popover.Content>
+                <Popover.Content className="tooltip-wrapper">
                     {
                         props.content
                     }

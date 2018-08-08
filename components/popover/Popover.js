@@ -140,18 +140,14 @@ class Popover extends Component {
         return [
             React.cloneElement(trigger, {
                 key: 'trigger',
-                type: props.type,
-                visible: state.visible,
                 triggerRef: this.triggerRefFun,
-                setPopupContentVisible: this.setPopupContentVisible,
                 eventListeners: eventListeners[`trigger-${props.type}`]
             }),
             React.cloneElement(content, {
                 key: 'content',
-                visible: state.visible,
+                active: state.visible,
                 contentRef: this.contentRefFun,
                 getTriggerPosition: this.getTriggerPosition,
-                setPopupContentVisible: this.setPopupContentVisible,
                 eventListeners: eventListeners[`content-${props.type}`]
             })
         ]

@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 const ActivableRendererFactory = (options = {delay: 500}) =>
     ActivableComponent => class ActivableRenderer extends Component {
         static propTypes = {
-            active: PropTypes.bool.isRequired,
+            active: PropTypes.bool,
             children: PropTypes.node,
             delay: PropTypes.number,
         };
 
         static defaultProps = {
             delay: options.delay,
+            active: false,
         }
 
         constructor(props) {
@@ -34,7 +35,7 @@ const ActivableRendererFactory = (options = {delay: 500}) =>
         renderAndActivate() {
             if (this.unrenderTimeout) clearTimeout(this.unrenderTimeout);
             this.setState({rendered: true, active: false}, () => {
-                this.activateTimeout = setTimeout(() => this.setState({active: true}), 20);
+                this.activateTimeout = setTimeout(() => this.setState({active: true}), 0);
             });
         }
 

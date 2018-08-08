@@ -1,49 +1,37 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import ActivableRenderer from '../hoc/ActivableRenderer';
+import classnames from 'classnames';
 
 class Trigger extends Component {
     static defaultProps = {
-        type:'hover',
-        triggerRef : f=>f
+        type: 'hover',
+        triggerRef: f => f,
+        setPopupContentVisible: f => f
     };
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {}
 
-        }
     }
 
-    // onMouseEnter = () => {
-    //     this.props.open();
-    // }
-    //
-    // onMouseLeave = () => {
-    //     this.props.close();
-    // }
-
-    onClick = () => {
-        this.props.visible ? this.props.close() : this.props.open();
-        ;
-    }
 
     render() {
         const props = this.props;
 
         return (
-          <div
-              ref={props.triggerRef}
-              className='rc-popover-trigger'
-              onClick={this.onClick}
-              // onMouseEnter={this.onMouseEnter}
-              // onMouseLeave={this.onMouseLeave}
-          >
-              {
-                  props.children
-              }
-          </div>
+            <div
+                ref={props.triggerRef}
+                className='rc-popover-trigger'
+                {...props.eventListeners}
+            >
+                {
+                    props.children
+                }
+            </div>
         );
     }
 }
 
-export default Trigger;
+export default ActivableRenderer()(Trigger);

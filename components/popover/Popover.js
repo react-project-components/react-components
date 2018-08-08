@@ -3,15 +3,45 @@ import PropTypes from 'prop-types';
 import kindOf from '../utils/kindOf';
 import {getOffset} from '../utils/domUtils';
 
-
 class Popover extends Component {
-    static defaultProps = {};
+    static defaultProps = {
+        type: 'hover'
+    };
 
     constructor(props) {
         super(props);
         this.state = {
-            visible: false,
+            visible: this.props.visible || false,
         }
+    }
+
+    componentDidMount() {
+        this.bindEventHandler();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('click', this.onClickOutside, true);
+    }
+
+    bindEventHandler = () => {
+        const props = this.props;
+        const state = this.state;
+
+        if (state.visible) {
+            window.addEventListener('click', this.onClickOutside, true);
+        }
+
+        // Ensure handler is removed even if autoClose is false
+        if (!state.visible) {
+            window.removeEventListener('click', this.onClickOutside, true);
+        }
+    }
+
+    onClickOutside = (event) => {
+        if (this.triggerRef.contains(event.target) || this.contentRef.contains(event.target)) {
+            return;
+        }
+        this.setPopupContentVisible(false);
     }
 
     validateChildren = () => {
@@ -30,23 +60,53 @@ class Popover extends Component {
         return {trigger, content};
     }
 
-    open = () => {
-        console.log('open')
-        this.setState({visible: true});
-    };
+    delaySetPopupVisible = (popupVisible, delay) => {
+        this.clearDelayTimer();
 
-    close = () => {
-        console.log('close')
-        this.setState({visible: false});
+        if (delay) {
+            this.delayTimer = setTimeout(() => {
+                this.setPopupContentVisible(popupVisible);
+                this.clearDelayTimer();
+            }, delay);
+        } else {
+            this.setPopupContentVisible(popupVisible);
+        }
+    }
+
+    clearDelayTimer = () => {
+        if (this.delayTimer) {
+            clearTimeout(this.delayTimer);
+            this.delayTimer = null;
+        }
+    }
+
+    onMouseEnter = () => {
+        this.delaySetPopupVisible(true);
+    }
+
+    onMouseLeave = () => {
+        this.delaySetPopupVisible(false, 100);
+    }
+
+    onClick = (event) => {
+        event.preventDefault();
+        this.setPopupContentVisible(!this.state.visible);
+    }
+
+    setPopupContentVisible = (visible) => {
+        this.setState({visible}, this.bindEventHandler);
     };
 
     triggerRefFun = (r) => {
         this.triggerRef = r;
     }
 
+    contentRefFun = (r) => {
+        this.contentRef = r;
+    }
+
     getTriggerPosition = () => {
         const box = this.triggerRef.getBoundingClientRect();
-
         return {
             top: box.top + window.pageYOffset - document.documentElement.clientTop,
             left: box.left + window.pageXOffset - document.documentElement.clientLeft,
@@ -58,22 +118,41 @@ class Popover extends Component {
     render() {
         const {trigger, content} = this.validateChildren();
 
-        const {type} = this.props;
+        const props = this.props;
         const state = this.state;
+
+        const eventListeners = {
+            'trigger-hover': {
+                onMouseEnter: this.onMouseEnter,
+                onMouseLeave: this.onMouseLeave
+            },
+            'content-hover': {
+                onMouseEnter: this.onMouseEnter,
+                onMouseLeave: this.onMouseLeave
+            },
+            'trigger-click': {
+                onClick: this.onClick
+            },
+            'content-click': {}
+        }
+
 
         return [
             React.cloneElement(trigger, {
                 key: 'trigger',
-                type,
+                type: props.type,
                 visible: state.visible,
                 triggerRef: this.triggerRefFun,
-                open: this.open,
-                close: this.close
+                setPopupContentVisible: this.setPopupContentVisible,
+                eventListeners: eventListeners[`trigger-${props.type}`]
             }),
             React.cloneElement(content, {
                 key: 'content',
                 visible: state.visible,
-                getTriggerPosition:this.getTriggerPosition
+                contentRef: this.contentRefFun,
+                getTriggerPosition: this.getTriggerPosition,
+                setPopupContentVisible: this.setPopupContentVisible,
+                eventListeners: eventListeners[`content-${props.type}`]
             })
         ]
     }

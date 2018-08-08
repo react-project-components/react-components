@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 
 class Content extends Component {
     static defaultProps = {
-        getTiggerPostion: f => f
+        getTiggerPostion: f => f,
+        setPopupContentVisible: f => f
     };
 
-    componentDidMount(){
+    componentDidMount() {
 
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
 
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
 
     }
 
@@ -27,8 +28,10 @@ class Content extends Component {
         let {top, left, height} = props.getTriggerPosition();
         return (
             ReactDOM.createPortal(
-                <div style={{position: 'absolute', top: top + height, left: left}}
-                >
+                <div
+                    ref={props.contentRef}
+                    style={{position: 'absolute', top: top + height, left: left}}
+                    {...props.eventListeners}>
                     {
                         props.children
                     }

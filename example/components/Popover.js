@@ -3,24 +3,22 @@ import Popover from '../../components/popover';
 import '../../components/button.scss';
 
 export default class PopoverTest extends React.Component {
-    state = {
-        active: false
-    };
+    constructor(props) {
+        super(props);
+    }
 
 
     render() {
         return (
-            <div>
-                <Popover>
-                    <Popover.Trigger>
-                        <span className='btn-primary'>test string</span>
-                    </Popover.Trigger>
+            <Popover>
+                <Popover.Trigger>
+                    <span className='btn-primary'>test string</span>
+                </Popover.Trigger>
 
-                    <Popover.Content>
-                        <span>content</span>
-                    </Popover.Content>
-                </Popover>
-            </div>
+                <Popover.Content>
+                    <div style={{backgroundColor: 'red', height: 200, width: 100}}>content</div>
+                </Popover.Content>
+            </Popover>
         );
     }
 }

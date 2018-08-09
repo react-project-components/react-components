@@ -95,7 +95,7 @@ class Popover extends Component {
 
     setPopupContentVisible = (visible) => {
         this.setState({visible}, this.bindEventHandler);
-    };
+    }
 
     triggerRefFun = (r) => {
         this.triggerRef = r;

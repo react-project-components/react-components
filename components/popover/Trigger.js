@@ -13,7 +13,6 @@ class Trigger extends Component {
 
     }
 
-
     render() {
         const props = this.props;
 

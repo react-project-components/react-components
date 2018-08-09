@@ -8,11 +8,14 @@ class Content extends Component {
     static defaultProps = {
         getTiggerPostion: f => f,
         setPopupContentVisible: f => f,
-        className: 'popover-content'
-    };
+        className: 'popover-content',
+        placement:'bottom',
+        gap:0
+    }
 
     componentDidMount() {
-
+        let thisDom = ReactDOM.findDOMNode(this);
+        console.log(thisDom.getBoundingClientRect());
     }
 
     componentWillReceiveProps(nextProps) {
@@ -21,6 +24,10 @@ class Content extends Component {
 
     componentWillUnmount() {
 
+    }
+
+    componentDidUpdate(){
+        console.log('componentDidUpdate ');
     }
 
     render() {

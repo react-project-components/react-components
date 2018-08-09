@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import Popover from '../popover';
 
 class ToolTip extends Component {
-    static defaultProps = {};
+    static defaultProps = {
+        placement: 'top'
+    };
 
     render() {
         const props = this.props;
@@ -13,10 +15,13 @@ class ToolTip extends Component {
                 <Popover.Trigger>
                     {props.children}
                 </Popover.Trigger>
-                <Popover.Content className="tooltip-wrapper">
-                    {
-                        props.content
-                    }
+                <Popover.Content
+                    placement={props.placement}
+                    className="tooltip-wrapper"
+                    // delay={100}
+                >
+                    <div className="tooltip-arrow"></div>
+                    <div className="tooltip-content">props.content</div>
                 </Popover.Content>
             </Popover>
         )

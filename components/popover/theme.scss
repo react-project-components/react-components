@@ -5,38 +5,38 @@
   display: inline-block;
 }
 
-.popover-content {
-  opacity: 0;
-  transform: translate(0, 10px);
-  z-index: $z-index-high;
-  box-shadow: 0 1px 6px rgba(0,0,0,.2);
-  transition:
-          opacity $animation-duration $animation-curve-default,
-          transform $animation-duration $animation-curve-default;
-  transition-delay: $animation-delay;
-
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
 //.popover-content {
 //  opacity: 0;
-//  transform: scaleY(0);
-//  position: absolute;
-//  //z-index: $z-index-high;
+//  transform: translate(0, 10px);
+//  z-index: $z-index-high;
 //  box-shadow: 0 1px 6px rgba(0,0,0,.2);
-//  transform-origin: 0 0;
 //  transition:
 //          opacity $animation-duration $animation-curve-default,
 //          transform $animation-duration $animation-curve-default;
-//  //transition-delay: $animation-delay;
+//  transition-delay: $animation-delay;
 //
 //  &.active {
 //    opacity: 1;
-//    transform: scaleY(1)
+//    transform: translateY(0);
 //  }
 //}
+
+
+.popover-content {
+  opacity: 0;
+  transform: scaleY(0);
+  position: absolute;
+  //z-index: $z-index-high;
+  box-shadow: 0 1px 6px rgba(0,0,0,.2);
+  transform-origin: 0 0;
+  transition:
+          opacity 0.2s $animation-curve-default,
+          transform 0.2s $animation-curve-default;
+  //transition-delay: $animation-delay;
+
+  &.active {
+    opacity: 1;
+    transform: scaleY(1)
+  }
+}
 

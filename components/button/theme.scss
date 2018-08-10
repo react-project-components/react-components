@@ -1,0 +1,336 @@
+.btn {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  border: 1px solid #bbb;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s
+}
+.btn:focus {
+  outline: none;
+}
+.btn:link, .btn:visited, .btn:focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn:hover {
+  color: #59f;
+  border-color: #59f;
+  text-decoration: none;
+}
+.btn:active {
+  color: #333;
+  background: #e5e5e5;
+  border-color: #bbb;
+  text-decoration: none;
+}
+.btn.btn-loading:hover, .btn.btn-loading:active {
+  background: #fff;
+  border: 1px solid #bbb;
+}
+.btn[type="button"], .btn[type="reset"], .btn[type="submit"] {
+  -webkit-appearance: none;
+}
+.btn + .btn {
+  margin-left: 10px;
+}
+/* 大小相关 */
+.btn-large {
+  height: 38px;
+  line-height: 36px;
+  padding: 0 23px;
+  font-size: 14px;
+}
+.btn-small {
+  height: 26px;
+  line-height: 24px;
+  padding: 0 7px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+/* 风格相关 */
+.btn-primary {
+  color: #fff;
+  background: #38f;
+  border-color: #38f
+}
+.btn-primary:link, .btn-primary:visited, .btn-primary:focus {
+  color: #fff;
+}
+.btn-primary:hover {
+  color: #fff;
+  background: #59f;
+  border-color: #59f;
+}
+.btn-primary:active {
+  color: #fff;
+  background: #27f;
+  border-color: #27f;
+}
+.btn-primary.btn-loading:hover, .btn-primary.btn-loading:active {
+  background: #38f;
+  border-color: #38f;
+}
+.btn-primary.btn-loading::after {
+  border-color: #fff transparent transparent transparent;
+}
+.btn-primary-outline {
+  color: #38f;
+  border-color: #38f;
+  background: #fff
+}
+.btn-primary-outline:link, .btn-primary-outline:visited, .btn-primary-outline:focus {
+  color: #38f;
+}
+.btn-primary-outline:hover {
+  color: #59f;
+  border-color: #59f;
+}
+.btn-primary-outline:active {
+  color: #27f;
+  background: #e5e5e5;
+  border-color: #27f;
+}
+.btn-primary-outline.btn-loading:hover, .btn-primary-outline.btn-loading:active {
+  border-color: #38f;
+  background: #fff;
+}
+.btn-primary-outline.btn-loading::after {
+  border-color: #38f transparent transparent transparent;
+}
+.btn-danger {
+  color: #fff;
+  background: #f44;
+  border-color: #f44
+}
+.btn-danger:link, .btn-danger:visited, .btn-danger:focus {
+  color: #fff;
+}
+.btn-danger:hover {
+  color: #fff;
+  background: #f66;
+  border-color: #f66;
+}
+.btn-danger:active {
+  color: #fff;
+  background: #e33;
+  border-color: #e33;
+}
+.btn-danger.btn-loading:hover, .btn-danger.btn-loading:active {
+  background: #f44;
+  border-color: #e33;
+}
+.btn-danger.btn-loading::after {
+  border-color: #fff transparent transparent transparent;
+}
+.btn-danger-outline {
+  color: #f44;
+  border-color: #f44;
+  background: #fff
+}
+.btn-danger-outline:link, .btn-danger-outline:visited, .btn-danger-outline:focus {
+  color: #f44;
+}
+.btn-danger-outline:hover {
+  color: #f66;
+  border-color: #f66;
+}
+.btn-danger-outline:active {
+  color: #e33;
+  background: #e5e5e5;
+  border-color: #e33;
+}
+.btn-danger-outline.btn-loading:hover, .btn-danger-outline.btn-loading:active {
+  border-color: #f44;
+  background: #fff;
+}
+.btn-danger-outline.btn-loading::after {
+  border-color: #f44 transparent transparent transparent;
+}
+.btn-success {
+  color: #fff;
+  background: #4b0;
+  border-color: #4b0
+}
+.btn-success:link, .btn-success:visited, .btn-success:focus {
+  color: #fff;
+}
+.btn-success:hover {
+  color: #fff;
+  background: #6c2;
+  border-color: #6c2;
+}
+.btn-success:active {
+  color: #fff;
+  background: #0a0;
+  border-color: #0a0;
+}
+.btn-success.btn-loading:hover, .btn-success.btn-loading:active {
+  background: #4b0;
+  border-color: #0a0;
+}
+.btn-success.btn-loading::after {
+  border-color: #fff transparent transparent transparent;
+}
+.btn-success-outline {
+  color: #4b0;
+  border-color: #4b0;
+  background: #fff
+}
+.btn-success-outline:link, .btn-success-outline:visited, .btn-success-outline:focus {
+  color: #4b0;
+}
+.btn-success-outline:hover {
+  color: #6c2;
+  border-color: #6c2;
+}
+.btn-success-outline:active {
+  color: #0a0;
+  background: #e5e5e5;
+  border-color: #0a0;
+}
+.btn-success-outline.btn-loading:hover, .btn-success-outline.btn-loading:active {
+  border-color: #4b0;
+  background: #fff;
+}
+.btn-success-outline.btn-loading::after {
+  border-color: #4b0 transparent transparent transparent;
+}
+/* 状态相关 */
+.btn-disabled, .btn-disabled[disabled] {
+  color: #bbb;
+  background: #f8f8f8;
+  border-color: #e5e5e5;
+  cursor: not-allowed
+}
+.btn-disabled:link, .btn-disabled:visited, .btn-disabled:focus, .btn-disabled[disabled]:link, .btn-disabled[disabled]:visited, .btn-disabled[disabled]:focus {
+  color: #bbb;
+}
+.btn-disabled:hover, .btn-disabled[disabled]:hover {
+  color: #bbb;
+  background: #f8f8f8;
+  border-color: #e5e5e5;
+}
+.btn-disabled:active, .btn-disabled[disabled]:active {
+  color: #bbb;
+  background: #f8f8f8;
+  border-color: #e5e5e5;
+}
+.btn-loading {
+  position: relative;
+  color: transparent;
+  cursor: not-allowed
+}
+.btn-loading:link, .btn-loading:visited, .btn-loading:focus, .btn-loading:hover, .btn-loading:active {
+  color: transparent;
+}
+.btn-loading::before, .btn-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 3px solid;
+  border-radius: 8px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn-loading::after {
+  border-color: #666 transparent transparent;
+  -webkit-animation: btn-spin 0.6s linear;
+  animation: btn-spin 0.6s linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes btn-spin {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes btn-spin {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.btn-border-transparent {
+  border-color: transparent
+}
+.btn-border-transparent:hover {
+  border-color: transparent;
+}
+.btn-border-transparent:active {
+  border-color: transparent;
+}
+/* Icon */
+.btn span + .zenticon, .btn .zenticon + span {
+  margin-left: 8px;
+}
+/* Button Group */
+.btn-group {
+  display: inline-block;
+}
+.btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.btn-group .btn {
+  position: relative;
+  border-radius: 0
+}
+.btn-group .btn:hover {
+  z-index: 2;
+}
+.btn-group .btn:first-child {
+  border-radius: 2px 0 0 2px;
+}
+.btn-group .btn:last-child {
+  border-radius: 0 2px 2px 0;
+}
+.btn-group .btn-primary:not(:last-child) {
+  border-right-color: #59f;
+}
+.btn-group .btn-primary:not(:first-child) {
+  border-left-color: #59f;
+}
+.btn-group .btn-danger:not(:last-child) {
+  border-right-color: #f66;
+}
+.btn-group .btn-danger:not(:first-child) {
+  border-left-color: #f66;
+}
+.btn-group .btn-success:not(:last-child) {
+  border-right-color: #6c2;
+}
+.btn-group .btn-success:not(:first-child) {
+  border-left-color: #6c2;
+}
+.btn-group + .btn-group, .btn-group + .btn, .btn + .btn-group {
+  margin-left: 10px;
+}

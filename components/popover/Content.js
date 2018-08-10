@@ -4,18 +4,30 @@ import PropTypes from 'prop-types';
 import ActivableRenderer from '../hoc/ActivableRenderer';
 import classnames from 'classnames';
 
+const outOfWindowPosition = {
+    position: 'absolute',
+    x: -100000,
+    y: -100000,
+}
+
 class Content extends Component {
     static defaultProps = {
         getTiggerPostion: f => f,
         setPopupContentVisible: f => f,
         className: 'popover-content',
-        placement:'bottom',
-        gap:0
+        placement: 'bottom',
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            contentBoundingBox: null
+        }
     }
 
     componentDidMount() {
         let thisDom = ReactDOM.findDOMNode(this);
-        console.log(thisDom.getBoundingClientRect());
+        this.setState({contentBoundingBox: thisDom.getBoundingClientRect()});
     }
 
     componentWillReceiveProps(nextProps) {
@@ -26,22 +38,33 @@ class Content extends Component {
 
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         console.log('componentDidUpdate ');
     }
 
     render() {
         const props = this.props;
+        const state = this.state;
 
-        let {top, left, height} = props.getTriggerPosition();
 
         const className = classnames(props.className, {'active': props.active});
+
+
+        let style = outOfWindowPosition;
+
+        if (state.contentBoundingBox) {
+            let position = props.getContentPositionFun(state.contentBoundingBox, props.placement);
+            style = {
+                position: 'absolute',
+                ...position
+            }
+        }
 
         return (
             ReactDOM.createPortal(
                 <div
                     ref={props.contentRef}
-                    style={{position: 'absolute', top: top + height, left: left}}
+                    style={style}
                     className={className}
                     {...props.eventListeners}>
                     {

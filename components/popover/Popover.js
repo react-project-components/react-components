@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import kindOf from '../utils/kindOf';
 import {getOffset} from '../utils/domUtils';
+import getPlacements from './getPlacements';
 
 class Popover extends Component {
     static defaultProps = {
-        type: 'hover'
+        type: 'click',
+        getPlacements: getPlacements
     };
 
     constructor(props) {
@@ -105,14 +107,9 @@ class Popover extends Component {
         this.contentRef = r;
     }
 
-    getTriggerPosition = () => {
-        const box = this.triggerRef.getBoundingClientRect();
-        return {
-            top: box.top + window.pageYOffset - document.documentElement.clientTop,
-            left: box.left + window.pageXOffset - document.documentElement.clientLeft,
-            height: box.height,
-            width: box.width
-        }
+    getContentPositionFun = (contentBoundingBox,placement) => {
+        const triggerBoundingBox = this.triggerRef.getBoundingClientRect();
+        return this.props.getPlacements(triggerBoundingBox, contentBoundingBox,placement)
     }
 
     render() {
@@ -147,7 +144,7 @@ class Popover extends Component {
                 key: 'content',
                 active: state.visible,
                 contentRef: this.contentRefFun,
-                getTriggerPosition: this.getTriggerPosition,
+                getContentPositionFun: this.getContentPositionFun,
                 eventListeners: eventListeners[`content-${props.type}`]
             })
         ]

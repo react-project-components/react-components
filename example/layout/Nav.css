@@ -1,0 +1,23 @@
+:root {
+  --active-color: #3498db;
+}
+
+nav {
+  width: 250px;
+}
+
+.nav-item {
+  display: inline-block;
+  font-size: 14px;
+  color: #455a64;
+  height: 44px;
+  width: 100%;
+  line-height: 44px;
+  padding: 0 20px 0 40px;
+
+  &:hover, &.active {
+    background-color: #f5f7fa;
+    color: var(--active-color);
+    border-right: var(--active-color) 2px solid;
+  }
+}

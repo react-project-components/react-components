@@ -1,4 +1,4 @@
-import './theme.scss';
+import './theme.css';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Popover from '../popover';

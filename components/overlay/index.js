@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './theme.scss';
+import './theme.css';
 
 class Overlay extends Component {
     static propTypes = {

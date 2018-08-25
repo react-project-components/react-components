@@ -1,11 +1,10 @@
-@import '../variables.scss';
+@import '../variables.css';
 
 .tooltip-wrapper {
   //box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   opacity: 0;
   background: transparent;
-  transition: opacity $animation-duration $animation-curve-default;
-
+  transition: opacity 0.35s var(--animation-curve-default);
   display: flex;
 
   &.active {

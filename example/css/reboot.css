@@ -1,0 +1,10 @@
+html {
+}
+
+body {
+}
+
+a, a:active, a:hover, a:focus, a:focus-within {
+  text-decoration: none;
+  outline: 0;
+}

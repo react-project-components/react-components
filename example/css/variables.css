@@ -1,0 +1,9 @@
+:root {
+    /*Margin & Padding */
+    --boxsize-lg: 50px;
+    --boxsize: 30px;
+    --boxsize-md: 20px;
+    --boxsize-bg: 15px;
+    --boxsize-sm: 10px;
+    --boxsize-xs: 5px;
+}

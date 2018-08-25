@@ -1,6 +1,6 @@
 import React from 'react';
 import ToolTip from '../../components/tooltip';
-import '../../components/button.scss';
+import '../../components/button.css';
 
 export default class ToolTipTest extends React.Component {
     constructor(props) {

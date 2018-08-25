@@ -38,22 +38,19 @@ module.exports = {
                         {
                             loader: "css-loader",
                             options: {
-                                sourceMap: true
+                                sourceMap: true,
+                                importLoaders: 1
                             }
                         },
-                        // {
-                        //     loader: 'postcss-loader',
-                        //     options: {
-                        //         sourceMap: true,
-                        //         plugins: [
-                        //             require('postcss-cssnext')
-                        //         ]
-                        //     }
-                        // },
                         {
-                            loader: 'sass-loader',
+                            loader: 'postcss-loader',
                             options: {
-                                sourceMap: true
+                                sourceMap: true,
+                                plugins: () => [
+                                    require('postcss-import'),
+                                    require('postcss-cssnext'),
+                                    require('precss')
+                                ]
                             }
                         }
                     ]

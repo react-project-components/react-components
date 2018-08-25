@@ -2,6 +2,9 @@ import React from 'react';
 import Dialog from '../../components/dialog';
 
 export default class DialogTest extends React.Component {
+    constructor(props){
+        super(props);
+    }
     state = {
         active: false
     };

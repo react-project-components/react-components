@@ -1,6 +1,6 @@
 import React from 'react';
 import Popover from '../../components/popover';
-import '../../components/button.scss';
+import '../../components/button.css';
 
 export default class PopoverTest extends React.Component {
     constructor(props) {

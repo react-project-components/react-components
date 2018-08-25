@@ -9,15 +9,12 @@
   top: 0;
   left: 0;
   width: 100vw;
-  //z-index: $z-index-higher;
-
-  @include reset;
 }
 
 .dialog {
   background-color: white;
   border-radius: 2px;
-  box-shadow: $zdepth-shadow-5;
+  box-shadow: var(--zdepth-shadow-5);
   display: flex;
   flex-direction: column;
   max-height: 96vh;
@@ -25,9 +22,9 @@
   opacity: 0;
   overflow: auto;
   transform: translateY(-40px);
-  transition: all $animation-duration $animation-curve-default;
+  transition: all 0.35s var(--animation-curve-default);
   transition-property: opacity, transform;
-  transition-delay: $animation-delay;
+  transition-delay: 0.07s;
 
   &.active {
     opacity: 1;

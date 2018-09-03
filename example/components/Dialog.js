@@ -14,14 +14,14 @@ export default class DialogTest extends React.Component {
     }
 
     actions = [
-        {label: "Cancel", onClick: this.handleToggle},
-        {label: "Save", onClick: this.handleToggle}
+        {label: "取消", onClick: this.handleToggle},
+        {label: "确定", onClick: this.handleToggle}
     ];
 
     render() {
         return (
             <div>
-                <button label='Show my dialog' onClick={this.handleToggle}>dialog</button>
+                <button className='btn-primary' onClick={this.handleToggle}>open dialog</button>
                 <Dialog
                     actions={this.actions}
                     active={this.state.active}

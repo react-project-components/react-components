@@ -48,9 +48,11 @@
 }
 
 .dialog-navigation {
-  flex-grow: 0;
+  width: 100%;
+  flex-grow: 1;
   padding: 8px;
   text-align: right;
+
 }
 
 .dialog-button {

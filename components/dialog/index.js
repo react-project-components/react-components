@@ -15,8 +15,8 @@ class Dialog extends Component {
     render() {
         var props = this.props;
         const actions = props.actions.map((action, idx) => {
-            const className = classnames('button', action.className);
-            return <button key={idx} {...action} className={className}/>; // eslint-disable-line
+            const className = classnames('dialog-button', action.className);
+            return <button key={idx} {...action} className={className}>{action.label}</button>; // eslint-disable-line
         });
 
         const className = classnames('dialog', {'active': props.active,}, props.className);

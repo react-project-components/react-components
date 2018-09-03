@@ -7,6 +7,7 @@ import MainLayout from './layout/MainLayout';
 import Dialog from './components/Dialog';
 import Popover from './components/Popover';
 import ToolTip from './components/ToolTip';
+import Button from "./components/Button";
 
 class App extends React.Component {
     render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
             <div>
                 <MainLayout>
                     <Route exact path="/dialog" component={Dialog}/>
+                    <Route path="/button" component={Button}/>
                     <Route path="/popover" component={Popover}/>
                     <Route path="/tooltip" component={ToolTip}/>
                 </MainLayout>

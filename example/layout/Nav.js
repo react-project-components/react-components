@@ -4,6 +4,10 @@ import {NavLink} from "react-router-dom";
 
 const NAV_CONFIG = [
     {
+        to: '/button',
+        text: 'button'
+    },
+    {
         to: '/dialog',
         text: 'dialog'
     },

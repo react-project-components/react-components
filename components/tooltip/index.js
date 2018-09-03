@@ -6,13 +6,14 @@ import getPlacements from './getPlacements';
 
 class ToolTip extends Component {
     static defaultProps = {
-        placement: 'top'
+        placement: 'top',
+        trigger: 'hover'
     };
 
     render() {
         const props = this.props;
         return (
-            <Popover getPlacements={getPlacements} type='hover'>
+            <Popover getPlacements={getPlacements} type={props.trigger}>
                 <Popover.Trigger>
                     {props.children}
                 </Popover.Trigger>
@@ -21,7 +22,7 @@ class ToolTip extends Component {
                     className={`tooltip-wrapper tooltip-wrapper-${props.placement}`}
                     delay={100}
                 >
-                    <div className="tooltip-content">props.content</div>
+                    <div className="tooltip-content">{props.content}</div>
                     <div className={`tooltip-arrow tooltip-arrow-${props.placement}`}></div>
                 </Popover.Content>
             </Popover>

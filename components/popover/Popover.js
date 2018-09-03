@@ -7,13 +7,20 @@ import getPlacements from './getPlacements';
 class Popover extends Component {
     static defaultProps = {
         type: 'click',
-        getPlacements: getPlacements
+        getPlacements: getPlacements,
+        visible: false
     };
 
     constructor(props) {
         super(props);
         this.state = {
             visible: this.props.visible || false,
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.visible !== this.state.visible) {
+            this.setPopupContentVisible(nextProps.visible);
         }
     }
 
@@ -107,9 +114,9 @@ class Popover extends Component {
         this.contentRef = r;
     }
 
-    getContentPositionFun = (contentBoundingBox,placement) => {
+    getContentPositionFun = (contentBoundingBox, placement) => {
         const triggerBoundingBox = this.triggerRef.getBoundingClientRect();
-        return this.props.getPlacements(triggerBoundingBox, contentBoundingBox,placement)
+        return this.props.getPlacements(triggerBoundingBox, contentBoundingBox, placement)
     }
 
     render() {

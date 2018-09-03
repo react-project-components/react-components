@@ -15,6 +15,10 @@ const NAV_CONFIG = [
         to: '/tooltip',
         text: 'tooltip'
     },
+    {
+        to: '/popover',
+        text: 'popover'
+    },
 ]
 
 export default class ReactClass extends React.Component {

@@ -1,0 +1,24 @@
+.popover-test {
+  input {
+    width: 140px;
+    height: 30px;
+    border: #bbb 1px solid;
+    padding: 6px;
+  }
+
+}
+
+.popover-test-content {
+  width: 140px;
+
+  li {
+    padding: 10px;
+    color: gray;
+
+    &:hover{
+      background: #d9d9d9;
+      cursor: pointer;
+    }
+  }
+}
+

@@ -46,7 +46,6 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "dependencies": {
-    "all": "^0.0.0",
     "classnames": "^2.2.5"
   },
   "peerDependencies": {

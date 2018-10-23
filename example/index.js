@@ -14,10 +14,11 @@ class App extends React.Component {
         return (
             <div>
                 <MainLayout>
+                    <Route exact path="/" component={Button}/>
                     <Route exact path="/dialog" component={Dialog}/>
-                    <Route path="/button" component={Button}/>
-                    <Route path="/popover" component={Popover}/>
-                    <Route path="/tooltip" component={ToolTip}/>
+                    <Route exact path="/button" component={Button}/>
+                    <Route exact path="/popover" component={Popover}/>
+                    <Route exact path="/tooltip" component={ToolTip}/>
                 </MainLayout>
             </div>
         )

@@ -25,10 +25,10 @@ class Content extends Component {
         }
     }
 
-    componentDidMount() {
-        let thisDom = ReactDOM.findDOMNode(this);
-        this.setState({contentBoundingBox: thisDom.getBoundingClientRect()});
-    }
+    // componentDidMount() {
+    //     let thisDom = ReactDOM.findDOMNode(this);
+    //     this.setState({contentBoundingBox: thisDom.getBoundingClientRect()});
+    // }
 
     componentWillReceiveProps(nextProps) {
 
@@ -38,8 +38,11 @@ class Content extends Component {
 
     }
 
-    componentDidUpdate() {
-        console.log('componentDidUpdate ');
+    contentRef = ref => {
+        if(!ref) return;
+        let thisDom = ReactDOM.findDOMNode(ref);
+        this.setState({contentBoundingBox: thisDom.getBoundingClientRect()});
+        this.props.contentRef(ref);
     }
 
     render() {
@@ -49,6 +52,8 @@ class Content extends Component {
 
         const className = classnames(props.className, {'active': props.active});
 
+
+        console.log('   - - - - - - - - - ',className);
 
         let style = outOfWindowPosition;
 
@@ -63,7 +68,7 @@ class Content extends Component {
         return (
             ReactDOM.createPortal(
                 <div
-                    ref={props.contentRef}
+                    ref={this.contentRef}
                     style={style}
                     className={className}
                     {...props.eventListeners}>

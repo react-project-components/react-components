@@ -16,6 +16,20 @@ class Popover extends Component {
         this.state = {
             visible: this.props.visible || false,
         }
+        this.eventListeners = {
+            'trigger-hover': {
+                onMouseEnter: this.onMouseEnter,
+                onMouseLeave: this.onMouseLeave
+            },
+            'content-hover': {
+                onMouseEnter: this.onMouseEnter,
+                onMouseLeave: this.onMouseLeave
+            },
+            'trigger-click': {
+                onClick: this.onClick
+            },
+            'content-click': {}
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -125,34 +139,18 @@ class Popover extends Component {
         const props = this.props;
         const state = this.state;
 
-        const eventListeners = {
-            'trigger-hover': {
-                onMouseEnter: this.onMouseEnter,
-                onMouseLeave: this.onMouseLeave
-            },
-            'content-hover': {
-                onMouseEnter: this.onMouseEnter,
-                onMouseLeave: this.onMouseLeave
-            },
-            'trigger-click': {
-                onClick: this.onClick
-            },
-            'content-click': {}
-        }
-
-
         return [
             React.cloneElement(trigger, {
                 key: 'trigger',
                 triggerRef: this.triggerRefFun,
-                eventListeners: eventListeners[`trigger-${props.type}`]
+                eventListeners: this.eventListeners[`trigger-${props.type}`]
             }),
             React.cloneElement(content, {
                 key: 'content',
                 active: state.visible,
                 contentRef: this.contentRefFun,
                 getContentPositionFun: this.getContentPositionFun,
-                eventListeners: eventListeners[`content-${props.type}`]
+                eventListeners: this.eventListeners[`content-${props.type}`]
             })
         ]
     }

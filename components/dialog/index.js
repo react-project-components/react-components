@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames'
 import Overlay from '../overlay';
 import ActivableRenderer from '../hoc/ActivableRenderer';
-import './theme.css';
+import './index.css';
 
 class Dialog extends Component {
     static defaultProps = {

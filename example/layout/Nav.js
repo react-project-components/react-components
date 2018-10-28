@@ -19,6 +19,10 @@ const NAV_CONFIG = [
         to: '/popover',
         text: 'popover'
     },
+    {
+        to: '/checkbox',
+        text: 'checkbox'
+    },
 ]
 
 export default class ReactClass extends React.Component {

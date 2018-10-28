@@ -24,7 +24,7 @@ export default class PopoverTest extends React.Component {
             <div className='popover-test'>
                 <Popover visible={state.contentVisible}>
                     <Popover.Trigger>
-                        <input placeholder='country' value={state.country}></input>
+                        <input readOnly placeholder='country' value={state.country}></input>
                     </Popover.Trigger>
 
                     <Popover.Content>

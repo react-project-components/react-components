@@ -1,0 +1,12 @@
+.rc-pagination{
+  ul{
+    display: flex;
+    align-items: center;
+
+    li {
+      border:  1px solid #bbb;
+    }
+
+  }
+
+}

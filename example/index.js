@@ -9,6 +9,7 @@ import Popover from './components/Popover';
 import ToolTip from './components/ToolTip';
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
+import Pagination from "./components/Pagination";
 
 class App extends React.Component {
     render() {
@@ -21,6 +22,7 @@ class App extends React.Component {
                     <Route exact path="/popover" component={Popover}/>
                     <Route exact path="/tooltip" component={ToolTip}/>
                     <Route exact path="/checkbox" component={Checkbox}/>
+                    <Route exact path="/pagination" component={Pagination}/>
                 </MainLayout>
             </div>
         )

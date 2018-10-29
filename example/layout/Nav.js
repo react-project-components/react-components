@@ -23,6 +23,10 @@ const NAV_CONFIG = [
         to: '/checkbox',
         text: 'checkbox'
     },
+    {
+        to: '/pagination',
+        text: 'pagination'
+    },
 ]
 
 export default class ReactClass extends React.Component {

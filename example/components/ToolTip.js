@@ -25,9 +25,6 @@ export default class ToolTipTest extends React.Component {
         <li>data1</li>
         <li>data1</li>
         <li>data1</li>
-        <li>data1</li>
-        <li>data1</li>
-        <li>data1</li>
       </ul>
     )
     return (
@@ -39,13 +36,40 @@ export default class ToolTipTest extends React.Component {
         </div>
 
         <div className='margin-top-bg'>
-          <ToolTip content="any content! include react componet" placement={'right'}>
+          <ToolTip content={<div>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+              any content! include react componet<br/>
+          </div>} placement={'right'}>
             <span className='btn-primary'>ToolTip right</span>
           </ToolTip>
         </div>
 
         <div className='margin-top-bg'>
-          <ToolTip content="hello !!!!!" placement={'bottom'}>
+          <ToolTip content={content} placement={'bottom'}>
             <span className='btn-primary'>ToolTip bottom</span>
           </ToolTip>
         </div>
@@ -59,7 +83,13 @@ export default class ToolTipTest extends React.Component {
 
         <div className='margin-top-bg'>
           <ToolTip onVisibleChange={this.onVisibleChange} visible={this.state.visible}
-                   content={<button className='btn-size-middle' onClick={this.manualClose}>close</button>}
+                   content={<div>
+                       any content! include react componetany content! include react componetany content! include react componetany content! include react componetany content! include react componet<br/>
+                       any content! include react componet<br/>
+                       any content! include react componet<br/>
+                       any content! include react componet<br/>
+                       <button className='btn-size-middle' onClick={this.manualClose}>close</button>
+                   </div>}
                    trigger='click'>
             <span className='btn-primary'>ToolTip click</span>
           </ToolTip>

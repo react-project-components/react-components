@@ -13,7 +13,7 @@ const extractCssPlugin = new ExtractTextPlugin({
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';  // webpack-hot-middleware热更新需要添加到入口文件
 module.exports = {
     entry: {
-        vendor: ['react', 'react-dom'],
+        vendor: ['babel-polyfill', 'react', 'react-dom'],
         index:[hotMiddlewareScript,'./example/index']
     },
     output: {

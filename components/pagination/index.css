@@ -1,10 +1,53 @@
-.rc-pagination{
-  ul{
+.rc-pagination {
+  display: inline-block;
+  .pager-container {
     display: flex;
     align-items: center;
+    font-size: 12px;
+    color: #999999;
 
     li {
-      border:  1px solid #bbb;
+      border: 1px solid #F2F2F2;
+      border-left: none;
+      width: 36px;
+      height: 31px;
+      text-align: center;
+      line-height: 31px;
+      cursor: pointer;
+
+      &:first-child {
+        border-left: 1px solid #F2F2F2;
+      }
+
+      &.dots {
+        cursor: default;
+      }
+
+      &.active {
+        background: #333333;
+        color: #FFFFFF;
+      }
+
+      &.pre:after {
+        display: inline-block;
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 4px solid transparent;
+        border-right: 4px solid  #CCCCCC;
+        border-bottom: 4px solid transparent;
+      }
+
+      &.next:after {
+        display: inline-block;
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 4px solid transparent;
+        border-left: 4px solid  #CCCCCC;
+        border-bottom: 4px solid transparent;
+      }
+
     }
 
   }

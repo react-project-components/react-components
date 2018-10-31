@@ -1,0 +1,36 @@
+
+.date-range-picker {
+  display: inline-block;
+  width: 260px;
+  height: 50px;
+  font-size: 14px;
+  line-height: 50px;
+  border: 1px solid #E7EAF3;
+  box-sizing: border-box;
+  padding-left: 15px;
+  position: relative;
+  color: #333333;
+  cursor: pointer;
+
+  &.active {
+    color: #DD001B
+  }
+
+  &:after {
+    position: absolute;
+    right: 10px;
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #CCCCCC;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.active:after {
+    border-top: 6px solid #DD001B;
+  }
+}

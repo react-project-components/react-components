@@ -6,7 +6,7 @@ export default class Pagination extends React.Component {
   static defaultProps = {
     current: 1,
     total: 1,
-    className:'',
+    className: '',
     onChangePage: f => f
   }
 
@@ -48,18 +48,18 @@ export default class Pagination extends React.Component {
 
   prePage = () => {
     const {current} = this.state;
-    if(current === 1){
+    if (current === 1) {
       return;
     }
-    this.setState({current:current - 1});
+    this.onChangePage(current - 1)();
   }
 
   nextPage = () => {
     const {current} = this.state;
-    if(current === this.props.total){
+    if (current === this.props.total) {
       return;
     }
-    this.setState({current:current + 1});
+    this.onChangePage(current + 1)();
   }
 
   render() {
@@ -71,7 +71,7 @@ export default class Pagination extends React.Component {
         <ul className='pager-container'>
           <li onClick={this.prePage} className='pre'></li>
           {
-            three[0] !== 1 && <li onClick={this.onChangePage(1)} className={current === 1 ? 'active':''}>1</li>
+            three[0] !== 1 && <li onClick={this.onChangePage(1)} className={current === 1 ? 'active' : ''}>1</li>
           }
           {
             three[0] > 2 && <li className='dots'>···</li>
@@ -79,7 +79,8 @@ export default class Pagination extends React.Component {
           {
             three.map(item => {
               return (
-                <li key={item} onClick={this.onChangePage(item)} className={current === item ? 'active':''}>{item}</li>
+                <li key={item} onClick={this.onChangePage(item)}
+                    className={current === item ? 'active' : ''}>{item}</li>
               )
             })
           }
@@ -87,7 +88,8 @@ export default class Pagination extends React.Component {
             three[three.length - 1] < props.total - 1 && <li className='dots'>···</li>
           }
           {
-            three[three.length - 1] !== props.total && <li onClick={this.onChangePage(props.total)} className={current === props.total ? 'active':''}>{props.total}</li>
+            three[three.length - 1] !== props.total && <li onClick={this.onChangePage(props.total)}
+                                                           className={current === props.total ? 'active' : ''}>{props.total}</li>
           }
           <li onClick={this.nextPage} className='next'></li>
         </ul>

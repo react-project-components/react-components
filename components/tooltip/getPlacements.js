@@ -1,5 +1,5 @@
 // 距离窗口的最小距离
-const gap = 10;
+const gap = 4;
 
 // tooltip自动调整位置
 function adjustPlacement(triggerBoundingBox, contentBoundingBox, placement = 'top') {

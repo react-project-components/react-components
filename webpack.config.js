@@ -7,13 +7,13 @@ const {dev_client} = require('./babel.config');
 module.exports = {
     mode: 'development',
     entry: {
-        app: [
-            "./example/index.js"
-        ],
         vendor: [
             "react",
             "react-dom",
             "react-router-dom"
+        ],
+        app: [
+            "./example/index.js"
         ]
     },
     devServer: {
@@ -88,7 +88,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            title: 'react components example',
+            title: 'react componentsTest example',
             template: "./example/index.html",
             filename: "./index.html"
         }),
@@ -103,5 +103,28 @@ module.exports = {
             "@component": path.resolve(__dirname, 'components/')
         }
     },
-    devtool: 'source-map'
+    devtool: 'source-map',
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'async',
+    //         minSize: 30000,
+    //         maxSize: 0,
+    //         minChunks: 1,
+    //         maxAsyncRequests: 5,
+    //         maxInitialRequests: 3,
+    //         automaticNameDelimiter: '~',
+    //         name: true,
+    //         cacheGroups: {
+    //             vendors: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 priority: -10
+    //             },
+    //             default: {
+    //                 minChunks: 2,
+    //                 priority: -20,
+    //                 reuseExistingChunk: true
+    //             }
+    //         }
+    //     }
+    // }
 }

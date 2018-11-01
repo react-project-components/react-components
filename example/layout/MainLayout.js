@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Nav';
 import Header from './Header';
-import {BrowserRouter, Route, StaticRouter, NavLink, Switch} from "react-router-dom";
+import {HashRouter, Route, StaticRouter, NavLink, Switch} from "react-router-dom";
 import './MainLayout.css';
 
 export default class MainLayout extends React.Component {
@@ -11,7 +11,7 @@ export default class MainLayout extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <div>
                     <Header/>
                     <div className='flex'>
@@ -21,7 +21,7 @@ export default class MainLayout extends React.Component {
                         </main>
                     </div>
                 </div>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }

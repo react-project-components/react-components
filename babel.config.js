@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
     dev_client: {
         presets: ["es2015", "stage-0", "react"],

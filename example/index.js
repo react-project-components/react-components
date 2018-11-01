@@ -1,34 +1,28 @@
-import React from 'react';
+import React, {lazy} from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import { Route } from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import MainLayout from './layout/MainLayout';
-
-import Dialog from './components/Dialog';
-import Popover from './components/Popover';
-import ToolTip from './components/ToolTip';
-import Button from "./components/Button";
-import Checkbox from "./components/Checkbox";
-import Pagination from "./components/Pagination";
-import DatePickerTest from "./components/DatePicker";
+import RouteConfig from './layout/routeConfig';
 
 class App extends React.Component {
     render() {
         return (
             <div>
                 <MainLayout>
-                    <Route exact path="/" component={Button}/>
-                    <Route exact path="/dialog" component={Dialog}/>
-                    <Route exact path="/button" component={Button}/>
-                    <Route exact path="/popover" component={Popover}/>
-                    <Route exact path="/tooltip" component={ToolTip}/>
-                    <Route exact path="/checkbox" component={Checkbox}/>
-                    <Route exact path="/pagination" component={Pagination}/>
-                    <Route exact path="/datepicker" component={DatePickerTest}/>
+                    {
+                        RouteConfig.map((item, index) => {
+                            return <Route key={index} exact path={`/${item.routeTxt}`} component={item.component}/>
+                        })
+                    }
                 </MainLayout>
             </div>
         )
     }
 }
+
+// import('./utils/dom').then(res => {
+//     console.log(' res ',res);
+// })
 
 ReactDOM.render(<App/>, document.getElementById('root'));

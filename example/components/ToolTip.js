@@ -1,5 +1,5 @@
 import React from 'react';
-import ToolTip from '../../components/tooltip';
+import {Tooltip} from '@component';
 
 export default class ToolTipTest extends React.Component {
   constructor(props) {
@@ -30,13 +30,13 @@ export default class ToolTipTest extends React.Component {
     return (
       <div>
         <div className='margin-top-bg'>
-          <ToolTip content={content}>
-            <span className='btn-primary'>ToolTip top</span>
-          </ToolTip>
+          <Tooltip content={content}>
+            <span className='btn-primary'>Tooltip top</span>
+          </Tooltip>
         </div>
 
         <div className='margin-top-bg'>
-          <ToolTip content={<div>
+          <Tooltip content={<div>
               any content! include react componet<br/>
               any content! include react componet<br/>
               any content! include react componet<br/>
@@ -64,25 +64,25 @@ export default class ToolTipTest extends React.Component {
               any content! include react componet<br/>
               any content! include react componet<br/>
           </div>} placement={'right'}>
-            <span className='btn-primary'>ToolTip right</span>
-          </ToolTip>
+            <span className='btn-primary'>Tooltip right</span>
+          </Tooltip>
         </div>
 
         <div className='margin-top-bg'>
-          <ToolTip content={content} placement={'bottom'}>
-            <span className='btn-primary'>ToolTip bottom</span>
-          </ToolTip>
+          <Tooltip content={content} placement={'bottom'}>
+            <span className='btn-primary'>Tooltip bottom</span>
+          </Tooltip>
         </div>
 
         <div className='margin-top-bg'>
-          <ToolTip content="hello !!!!!" placement={'left'}>
-            <span className='btn-primary'>ToolTip left</span>
-          </ToolTip>
+          <Tooltip content="hello !!!!!" placement={'left'}>
+            <span className='btn-primary'>Tooltip left</span>
+          </Tooltip>
         </div>
 
 
         <div className='margin-top-bg'>
-          <ToolTip onVisibleChange={this.onVisibleChange} visible={this.state.visible}
+          <Tooltip onVisibleChange={this.onVisibleChange} visible={this.state.visible}
                    content={<div>
                        any content! include react componetany content! include react componetany content! include react componetany content! include react componetany content! include react componet<br/>
                        any content! include react componet<br/>
@@ -91,8 +91,8 @@ export default class ToolTipTest extends React.Component {
                        <button className='btn-size-middle' onClick={this.manualClose}>close</button>
                    </div>}
                    trigger='click'>
-            <span className='btn-primary'>ToolTip click</span>
-          </ToolTip>
+            <span className='btn-primary'>Tooltip click</span>
+          </Tooltip>
         </div>
       </div>
 

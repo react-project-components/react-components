@@ -8,7 +8,6 @@ import Popover from '../popover';
 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import './index.css';
 
 moment.locale('zh-cn');
 const now = moment();

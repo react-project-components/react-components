@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from '../../components/checkbox';
+import {Checkbox} from '@component';
 
 export default class ToolTipTest extends React.Component {
     constructor(props) {

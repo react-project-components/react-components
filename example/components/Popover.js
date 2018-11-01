@@ -1,5 +1,5 @@
 import React from 'react';
-import Popover from '../../components/popover';
+import {Popover} from '@component';
 import './Popover.css';
 
 export default class PopoverTest extends React.Component {

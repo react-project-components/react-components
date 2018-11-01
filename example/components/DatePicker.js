@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from '../../components/date-picker';
+import {DatePicker} from '@component';
 import './Popover.css';
 
 const RangePicker = DatePicker.RangePicker;

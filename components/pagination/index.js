@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './index.css';
-
 export default class Pagination extends React.Component {
   static defaultProps = {
     current: 1,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Pagination from '../../components/pagination';
+import {Pagination} from '@component';
 
 
 export default class PaginationTest extends React.Component {

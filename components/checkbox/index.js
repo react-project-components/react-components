@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import './index.css';
 
 export default class Checkbox extends React.Component {
     constructor(props) {

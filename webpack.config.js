@@ -20,7 +20,7 @@ module.exports = {
         hot: true,
         contentBase: path.resolve(__dirname, "dist"),
         port: 8080,
-        open:true,
+        open: true,
         historyApiFallback: true,
         disableHostCheck: true
     },
@@ -86,10 +86,9 @@ module.exports = {
             }
         ]
     },
-
     plugins: [
         new HtmlWebPackPlugin({
-            title:'react components example',
+            title: 'react components example',
             template: "./example/index.html",
             filename: "./index.html"
         }),
@@ -99,5 +98,10 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
+    resolve: {
+        alias: {
+            "@component": path.resolve(__dirname, 'components/')
+        }
+    },
     devtool: 'source-map'
 }

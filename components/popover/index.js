@@ -1,4 +1,3 @@
-import './index.css';
 import Popover from './Popover';
 import Content from './Content';
 import Trigger from './Trigger';

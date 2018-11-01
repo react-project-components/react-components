@@ -1,84 +1,103 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const babelConfig = require("./babel.config").dev_client;
-const ROOT_PATH = process.cwd();
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const {dev_client} = require('./babel.config');
 
-const extractCssPlugin = new ExtractTextPlugin({
-    filename: "css/[name].css",
-    disable: true
-});
-
-const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';  // webpack-hot-middleware热更新需要添加到入口文件
 module.exports = {
+    mode: 'development',
     entry: {
-        vendor: ['babel-polyfill', 'react', 'react-dom'],
-        index:[hotMiddlewareScript,'./example/index']
+        app: [
+            "./example/index.js"
+        ],
+        vendor: [
+            "react",
+            "react-dom",
+            "react-router-dom"
+        ]
     },
-    output: {
-        path: path.resolve(ROOT_PATH, './dist'),
-        filename: 'js/[name].js',
-        publicPath: "/"
+    devServer: {
+        hot: true,
+        contentBase: path.resolve(__dirname, "dist"),
+        port: 8080,
+        open:true,
+        historyApiFallback: true,
+        disableHostCheck: true
     },
-
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                loader: 'babel-loader',
+                test: /\.js$/,
                 exclude: /node_modules/,
-                options: babelConfig
+                use: {
+                    loader: "babel-loader",
+                    options: dev_client
+                }
             },
             {
-                test: /\.(css|scss)$/,
-                use: extractCssPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                sourceMap: true,
-                                importLoaders: 1
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                                plugins: () => [
-                                    require('postcss-import'),
-                                    require('postcss-cssnext'),
-                                    require('precss')
-                                ]
-                            }
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader",
+                        options: {minimize: true}
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1
                         }
-                    ]
-                })
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            plugins: () => [
+                                require('postcss-import'),
+                                require('postcss-cssnext'),
+                                require('precss')
+                            ]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 7186,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 7186
+                    }
                 }
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: Infinity,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: Infinity
+                    }
                 }
             }
         ]
     },
 
     plugins: [
-        extractCssPlugin,
-        new HtmlWebpackPlugin({template: './example/index.html'}),
-        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'js/vendor.js', minChunks: Infinity,}),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
+        new HtmlWebPackPlugin({
+            title:'react components example',
+            template: "./example/index.html",
+            filename: "./index.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devtool: 'source-map'
 }

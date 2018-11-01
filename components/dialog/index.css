@@ -13,8 +13,8 @@
 
 .dialog {
   background-color: white;
-  border-radius: 2px;
-  box-shadow: var(--zdepth-shadow-5);
+  border-radius: 5px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.2);
   display: flex;
   flex-direction: column;
   max-height: 96vh;
@@ -32,32 +32,58 @@
   }
 }
 
-.dialog-title {
-  color: black;
-  flex-grow: 0;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  margin: 0 0 16px;
+.dialog-header{
+  height: 57px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e7eaf3;
+  color: #666;
+
+  .dialog-title {
+    font-size: 14px;
+    padding-left: 20px;
+
+  }
+
+  .dialog-close{
+    margin-left: auto;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
 }
+
 
 .dialog-body {
   flex-grow: 2;
-  padding: 24px;
+  padding: 40px 20px;
 }
 
 .dialog-navigation {
   width: 100%;
   flex-grow: 1;
   padding: 8px;
-  text-align: right;
-
+  text-align: center;
 }
 
 .dialog-button {
-  margin-left: 8px;
-  min-width: 0;
-  padding-left: 8px;
-  padding-right: 8px;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 34px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #f2f2f2;
+
+  &:last-child:not(:only-child){
+    margin-left: 20px;
+  }
+  &:focus { outline: none; }
 }

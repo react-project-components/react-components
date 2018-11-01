@@ -32,8 +32,14 @@ class Dialog extends Component {
                         onMouseUp={props.onOverlayMouseUp}
                     />
                     <div className={className}>
+                        {
+                            props.title ?
+                                <div className='dialog-header'>
+                                    <h6 className='dialog-title'>{props.title}</h6>
+                                    <span title='关闭窗体' className='dialog-close'>×</span>
+                                </div> : null
+                        }
                         <section role="body" className="dialog-body">
-                            {props.title ? <h6 className='dialog-title'>{props.title}</h6> : null}
                             {props.children}
                         </section>
                         {actions.length

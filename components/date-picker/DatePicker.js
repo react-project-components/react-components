@@ -57,8 +57,8 @@ class DatePicker extends Component {
     const state = this.state;
 
     let isValid = isValidRange(value);
-    let active = props.active && isValid;
-    let classNames = classnames('date-range-picker', {active: active}, props.className);
+    let visible = props.visible && isValid;
+    let classNames = classnames('date-range-picker', {visible: visible}, props.className);
     return (
       <Popover onVisibleChange={this.onVisibleChange} type='click' visible={state.visible}>
         <Popover.Trigger>

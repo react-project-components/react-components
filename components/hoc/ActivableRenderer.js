@@ -4,27 +4,27 @@ import PropTypes from 'prop-types';
 const ActivableRendererFactory = (options = {delay: 400}) =>
     ActivableComponent => class ActivableRenderer extends Component {
         static propTypes = {
-            active: PropTypes.bool,
+            visible: PropTypes.bool,
             children: PropTypes.node,
             delay: PropTypes.number,
         };
 
         static defaultProps = {
             delay: options.delay,
-            active: false,
+            visible: false,
         }
 
         constructor(props) {
             super(props);
             this.state = {
-                active: this.props.active,
-                rendered: this.props.active,
+                visible: this.props.visible,
+                rendered: this.props.visible,
             };
         }
 
         componentWillReceiveProps(nextProps) {
-            if (nextProps.active && !this.props.active) this.renderAndActivate();
-            if (!nextProps.active && this.props.active) this.deactivateAndUnrender();
+            if (nextProps.visible && !this.props.visible) this.renderAndActivate();
+            if (!nextProps.visible && this.props.visible) this.deactivateAndUnrender();
         }
 
         componentWillUnmount() {
@@ -34,13 +34,13 @@ const ActivableRendererFactory = (options = {delay: 400}) =>
 
         renderAndActivate() {
             if (this.unrenderTimeout) clearTimeout(this.unrenderTimeout);
-            this.setState({rendered: true, active: false}, () => {
-                this.activateTimeout = setTimeout(() => this.setState({active: true}), 0);
+            this.setState({rendered: true, visible: false}, () => {
+                this.activateTimeout = setTimeout(() => this.setState({visible: true}), 0);
             });
         }
 
         deactivateAndUnrender() {
-            this.setState({rendered: true, active: false}, () => {
+            this.setState({rendered: true, visible: false}, () => {
                 this.unrenderTimeout = setTimeout(() => {
                     this.setState({rendered: false});
                     this.unrenderTimeout = null;
@@ -50,9 +50,9 @@ const ActivableRendererFactory = (options = {delay: 400}) =>
 
         render() {
             const {delay, ...others} = this.props; // eslint-disable-line no-unused-vars
-            const {active, rendered} = this.state;
+            const {visible, rendered} = this.state;
             return rendered
-                ? <ActivableComponent {...others} active={active}/>
+                ? <ActivableComponent {...others} visible={visible}/>
                 : null;
         }
     };

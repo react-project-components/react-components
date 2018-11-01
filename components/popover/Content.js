@@ -50,7 +50,7 @@ class Content extends Component {
         const props = this.props;
         const state = this.state;
 
-        const className = classnames(props.className, {'active': props.active});
+        const className = classnames(props.className, {'active': props.visible});
 
         return (
             ReactDOM.createPortal(

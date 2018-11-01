@@ -1,4 +1,5 @@
 @import '../variables';
+@import "../overlay/index.css";
 
 .dialog-wrapper {
   align-items: center;

@@ -8,7 +8,7 @@ import ActivableRenderer from '../hoc/ActivableRenderer';
 class Dialog extends Component {
     static defaultProps = {
         actions: [],
-        active: false,
+        visible: false,
     }
 
     render() {
@@ -18,13 +18,13 @@ class Dialog extends Component {
             return <button key={idx} {...action} className={className}>{action.label}</button>; // eslint-disable-line
         });
 
-        const className = classnames('dialog', {'active': props.active,}, props.className);
+        const className = classnames('dialog', {'active': props.visible}, props.className);
 
         return (
             ReactDOM.createPortal(
                 <div className='dialog-wrapper'>
                     <Overlay
-                        active={props.active}
+                        visible={props.visible}
                         onClick={props.onOverlayClick}
                         onEscKeyDown={props.onEscKeyDown}
                         onMouseDown={props.onOverlayMouseDown}
@@ -62,7 +62,7 @@ Dialog.propTypes = {
         label: PropTypes.string,
         children: PropTypes.node,
     })),
-    active: PropTypes.bool,
+    visible: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
     onEscKeyDown: PropTypes.func,

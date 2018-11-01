@@ -18,7 +18,7 @@ export default class ReactClass extends React.Component {
               RouteConfig.map((value,index) => {
               return (
                 <li key={index}>
-                  <NavLink className='nav-item' to={`/${value.routeTxt}`} activeClassName='active'>{value.routeTxt}</NavLink>
+                  <NavLink className='nav-item' to={`/${value.routeTxt}`} activeClassName='visible'>{value.routeTxt}</NavLink>
                 </li>
               )
             })

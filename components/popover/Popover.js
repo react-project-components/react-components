@@ -151,7 +151,7 @@ class Popover extends Component {
       }),
       React.cloneElement(content, {
         key: 'content',
-        active: state.visible,
+        visible: state.visible,
         contentRef: this.contentRefFun,
         getContentPositionFun: this.getContentPositionFun,
         eventListeners: this.eventListeners[`content-${props.type}`]

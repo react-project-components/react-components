@@ -6,16 +6,16 @@ export default class DialogTest extends React.Component {
         super(props);
     }
     state = {
-        active: false
+        visible: false
     };
 
     handleToggle = () => {
-        this.setState({active: !this.state.active});
+        this.setState({visible: !this.state.visible});
     }
 
     actions = [
+        {label: "确定", onClick: this.handleToggle},
         {label: "取消", onClick: this.handleToggle},
-        {label: "确定", onClick: this.handleToggle}
     ];
 
     render() {
@@ -24,7 +24,7 @@ export default class DialogTest extends React.Component {
                 <button className='btn-primary' onClick={this.handleToggle}>open dialog</button>
                 <Dialog
                     actions={this.actions}
-                    active={this.state.active}
+                    visible={this.state.visible}
                     onEscKeyDown={this.handleToggle}
                     onOverlayClick={this.handleToggle}
                     title='My awesome dialog'>

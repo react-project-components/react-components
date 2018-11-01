@@ -2,18 +2,16 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './index.css';
-
 class Overlay extends Component {
     static propTypes = {
-        active: PropTypes.bool,
+        visible: PropTypes.bool,
         children: PropTypes.node,
         className: PropTypes.string,
         lockScroll: PropTypes.bool,
         onClick: PropTypes.func,
         onEscKeyDown: PropTypes.func,
         theme: PropTypes.shape({
-            active: PropTypes.string,
+            visible: PropTypes.string,
             backdrop: PropTypes.string,
             overlay: PropTypes.string,
         }),
@@ -24,15 +22,15 @@ class Overlay extends Component {
     };
 
     componentDidMount() {
-        const {active, lockScroll, onEscKeyDown} = this.props;
+        const {visible, lockScroll, onEscKeyDown} = this.props;
         if (onEscKeyDown) document.body.addEventListener('keydown', this.handleEscKey);
-        if (active && lockScroll) document.body.style.overflow = 'hidden';
+        if (visible && lockScroll) document.body.style.overflow = 'hidden';
     }
 
     componentWillUpdate(nextProps) {
         if (this.props.lockScroll) {
-            const becomingActive = nextProps.active && !this.props.active;
-            const becomingUnactive = !nextProps.active && this.props.active;
+            const becomingActive = nextProps.visible && !this.props.visible;
+            const becomingUnactive = !nextProps.visible && this.props.visible;
 
             if (becomingActive) {
                 document.body.style.overflow = 'hidden';
@@ -46,16 +44,16 @@ class Overlay extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.onEscKeyDown) {
-            if (this.props.active && !prevProps.active) {
+            if (this.props.visible && !prevProps.visible) {
                 document.body.addEventListener('keydown', this.handleEscKey);
-            } else if (!this.props.active && prevProps.active) {
+            } else if (!this.props.visible && prevProps.visible) {
                 document.body.removeEventListener('keydown', this.handleEscKey);
             }
         }
     }
 
     componentWillUnmount() {
-        if (this.props.active && this.props.lockScroll) {
+        if (this.props.visible && this.props.lockScroll) {
             if (!document.querySelectorAll('[data-react-toolbox="overlay"]')[1]) {
                 document.body.style.overflow = '';
             }
@@ -67,7 +65,7 @@ class Overlay extends Component {
     }
 
     handleEscKey = (e) => {
-        if (this.props.active && this.props.onEscKeyDown && e.which === 27) {
+        if (this.props.visible && this.props.onEscKeyDown && e.which === 27) {
             this.props.onEscKeyDown(e);
         }
     }
@@ -81,12 +79,12 @@ class Overlay extends Component {
     }
 
     render() {
-        const {active, className, lockScroll, onEscKeyDown, ...other} = this.props; // eslint-disable-line
+        const {visible, className, lockScroll, onEscKeyDown, ...other} = this.props; // eslint-disable-line
         return (
             <div
                 {...other}
                 onClick={this.handleClick}
-                className={classnames('overlay', {'active': active,}, className)}/>
+                className={classnames('overlay', {'active': visible}, className)}/>
         );
     }
 }

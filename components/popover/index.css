@@ -14,7 +14,7 @@
   top: 9999px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
   transform-origin: 0 0;
-  transition: opacity 0.2s var(--animation-curve-default), transform 0.2s var(--animation-curve-default);
+  transition: opacity 0.3s var(--animation-curve-default), transform 0.3s var(--animation-curve-default);
 
   &.active {
     opacity: 1;

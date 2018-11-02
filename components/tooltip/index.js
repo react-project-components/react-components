@@ -62,6 +62,7 @@ class ToolTip extends Component {
                 <Popover.Content
                     placement={props.placement}
                     className={`tooltip-wrapper tooltip-wrapper-${state.placement}`}
+                    delay={100}
                 >
                     <div className="tooltip-content">{props.content}</div>
                     <div style={state.gapStyle} className={`tooltip-arrow tooltip-arrow-${state.placement}`}></div>

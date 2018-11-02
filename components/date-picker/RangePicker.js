@@ -33,20 +33,23 @@ class RangePicker extends Component {
     onVisibleChange: f => f,
     disabledDate: () => false,
     calendarProps: {},
-    onChange: f => f
+    onChange: f => undefined
   };
 
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-      value: [],
+      value: []
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.visible !== this.state.visible) {
       this.setState({visible: nextProps.visible});
+    }
+    if (nextProps.value !== undefined) {
+      this.setState({value: nextProps.value});
     }
   }
 
@@ -56,9 +59,15 @@ class RangePicker extends Component {
   }
 
   onChange = (value) => {
-    // if(value.length !== 2) return;
+    if (!isValidRange(value)) return;
     this.setState({value});
-    isValidRange(value) && this.props.onChange(value);
+    // 用 promise 更好？
+    let visible = this.props.onChange(value);
+    if (typeof visible === "boolean") {
+      this.onVisibleChange(visible);
+    } else {
+      this.onVisibleChange(false);
+    }
   }
 
   render() {
@@ -67,8 +76,10 @@ class RangePicker extends Component {
 
     let value = state.value;
     let isValid = isValidRange(value);
-    let visible = props.visible && isValid;
-    let classNames = classnames('date-range-picker', {visible: visible}, props.className);
+
+    let active = props.active && isValid;
+    let classNames = classnames('date-picker', {active: active}, props.className);
+
     return (
       <Popover onVisibleChange={this.onVisibleChange} type='click' visible={state.visible}>
         <Popover.Trigger>
@@ -85,7 +96,7 @@ class RangePicker extends Component {
             showWeekNumber={false}
             locale={zhCN}
             defaultValue={defaultValue}
-            hoverValue={value}
+            selectedValue={state.value}
             disabledDate={props.disabledDate}
             dateInputPlaceholder={['开始日期', '结束日期']}
             showDateInput={false}

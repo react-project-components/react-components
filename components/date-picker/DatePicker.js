@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
 
-import RangeCalendar from 'rc-calendar/lib/RangeCalendar';
+import Calendar from 'rc-calendar';
 import zhCN from 'rc-calendar/lib/locale/zh_CN';
 import 'rc-calendar/assets/index.css';
 import Popover from '../popover';
@@ -15,15 +15,8 @@ now.utcOffset(8);
 
 const formatStr = 'YYYY/MM/DD';
 
-const defaultCalendarValue = now.clone();
-defaultCalendarValue.add(-1, 'month');
-
 function format(v) {
   return v ? v.format(formatStr) : '';
-}
-
-function isValidRange(v) {
-  return v && v[0] && v[1];
 }
 
 class DatePicker extends Component {
@@ -37,7 +30,7 @@ class DatePicker extends Component {
     super(props);
     this.state = {
       visible: false,
-      value: [],
+      value: null,
     }
   }
 
@@ -52,30 +45,38 @@ class DatePicker extends Component {
     this.props.onVisibleChange(visible);
   }
 
+  onChange = (value) => {
+    this.setState({value});
+  }
+
   render() {
     const props = this.props;
     const state = this.state;
 
-    let isValid = isValidRange(value);
-    let visible = props.visible && isValid;
-    let classNames = classnames('date-range-picker', {visible: visible}, props.className);
+    const value = state.value;
+    let classNames = classnames('date-picker', {active: props.visible}, props.className);
+
     return (
       <Popover onVisibleChange={this.onVisibleChange} type='click' visible={state.visible}>
         <Popover.Trigger>
           <div className={classNames}>
             {
-              isValid ? `${format(value[0])} 至 ${format(value[1])}` :
-                '请选择精确时间段'
+              value ? `${format(value)}` :
+                '请选择时间'
             }
           </div>
         </Popover.Trigger>
         <Popover.Content>
-          <RangeCalendar
+          <Calendar
             showWeekNumber={false}
-            defaultValue={[now.clone().add(-1, 'months'), now]}
             locale={zhCN}
+            defaultValue={now}
+            selectedValue={value}
+            showToday
+            showDateInput={false}
+            showOk={false}
+            onChange={this.onChange}
             disabledDate={props.disabledDate}
-            dateInputPlaceholder={['开始日期', '结束日期']}
             {...props.calendarProps}
           />
         </Popover.Content>

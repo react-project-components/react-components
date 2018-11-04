@@ -1,1 +1,1 @@
-import './button/theme.css';
+import './button/index.css';

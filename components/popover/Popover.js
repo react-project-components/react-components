@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import kindOf from '../utils/kindOf';
-import {getOffset} from '../utils/domUtils';
 import getPlacements from './getPlacements';
 
 class Popover extends Component {
   static defaultProps = {
     type: 'click',
     getPlacements: getPlacements,
-    visible: false,
     onVisibleChange: f => f
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      visible: this.props.visible,
+      visible: this.props.visible || false,
     }
     this.eventListeners = {
       'trigger-hover': {
@@ -34,7 +31,7 @@ class Popover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.state.visible) {
+    if ('visible' in nextProps && nextProps.visible !== this.state.visible) {
       this.setPopupContentVisible(nextProps.visible);
     }
   }

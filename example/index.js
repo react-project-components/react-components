@@ -1,5 +1,6 @@
-import React, {lazy} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import '@component/index'
 import './css/index.css';
 import {Route} from 'react-router-dom'
 import MainLayout from './layout/MainLayout';

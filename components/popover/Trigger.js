@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 class Trigger extends Component {
@@ -16,10 +17,12 @@ class Trigger extends Component {
     render() {
         const props = this.props;
 
+        const className = classnames('rc-popover-trigger',props.className);
+
         return (
             <div
                 ref={props.triggerRef}
-                className='rc-popover-trigger'
+                className={className}
                 {...props.eventListeners}
             >
                 {

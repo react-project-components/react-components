@@ -1,7 +1,7 @@
-@import '../variables';
+@import '../variables.css';
 @import "../overlay/index.css";
 
-.dialog-wrapper {
+.modal-wrapper {
   align-items: center;
   display: flex;
   height: 100vh;
@@ -12,10 +12,10 @@
   width: 100vw;
 }
 
-.dialog {
+.modal {
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
   display: flex;
   flex-direction: column;
   max-height: 96vh;
@@ -33,20 +33,20 @@
   }
 }
 
-.dialog-header{
+.modal-header {
   height: 57px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e7eaf3;
   color: #666;
 
-  .dialog-title {
+  .modal-title {
     font-size: 14px;
     padding-left: 20px;
 
   }
 
-  .dialog-close{
+  .modal-close {
     margin-left: auto;
     font-size: 30px;
     cursor: pointer;
@@ -54,20 +54,19 @@
   }
 }
 
-
-.dialog-body {
+.modal-body {
   flex-grow: 2;
   padding: 40px 20px;
 }
 
-.dialog-navigation {
+.modal-navigation {
   width: 100%;
   flex-grow: 1;
-  padding: 8px;
+  padding: 0 0 40px;
   text-align: center;
 }
 
-.dialog-button {
+.modal-button {
   display: inline-block;
   box-sizing: border-box;
   height: 40px;
@@ -83,8 +82,22 @@
   user-select: none;
   border: 1px solid #f2f2f2;
 
-  &:last-child:not(:only-child){
+  &:last-child:not(:only-child) {
     margin-left: 20px;
   }
-  &:focus { outline: none; }
+  &:focus {
+    outline: none;
+  }
+
+  &-blue {
+    background: #4493ed;
+    color: #fff;
+    border-color: #4493ed;
+  }
+
+  &-white {
+    background: #fff;
+    color: #333;
+    border-color: #e7e7e7;
+  }
 }

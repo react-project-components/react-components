@@ -8,13 +8,13 @@ const Button = Loadable({
 });
 
 
-const Dialog = Loadable({
-    loader: () => import('../componentsTest/Dialog'),
+const Modal = Loadable({
+    loader: () => import('../componentsTest/Modal'),
     loading:Loading
 });
 
 const Popover = Loadable({
-    loader: () => import('../componentsTest/Popover'),
+    loader: () => import('../componentsTest/Select'),
     loading:Loading
 });
 
@@ -47,12 +47,12 @@ export default [
         routeTxt:'button'
     },
     {
-        component:Dialog,
-        routeTxt:'dialog'
+        component:Modal,
+        routeTxt:'modal'
     },
     {
         component:Popover,
-        routeTxt:'popover'
+        routeTxt:'select'
     },
     {
         component:ToolTip,

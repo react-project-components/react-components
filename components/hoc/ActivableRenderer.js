@@ -7,6 +7,7 @@ const ActivableRendererFactory = (options = {delay: 500}) =>
             visible: PropTypes.bool,
             children: PropTypes.node,
             delay: PropTypes.number,
+            afterClose: () => {}
         };
 
         static defaultProps = {
@@ -17,9 +18,13 @@ const ActivableRendererFactory = (options = {delay: 500}) =>
         constructor(props) {
             super(props);
             this.state = {
-                visible: this.props.visible,
-                rendered: this.props.visible,
+                visible: false,
+                rendered: false,
             };
+        }
+
+        componentDidMount() {
+            if (this.props.visible) this.renderAndActivate();
         }
 
         componentWillReceiveProps(nextProps) {
@@ -44,6 +49,7 @@ const ActivableRendererFactory = (options = {delay: 500}) =>
                 this.unrenderTimeout = setTimeout(() => {
                     this.setState({rendered: false});
                     this.unrenderTimeout = null;
+                    this.props.afterClose && this.props.afterClose();
                 }, this.props.delay);
             });
         }

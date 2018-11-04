@@ -16,73 +16,84 @@ now.utcOffset(8);
 const formatStr = 'YYYY/MM/DD';
 
 function format(v) {
-  return v ? v.format(formatStr) : '';
+    return v ? v.format(formatStr) : '';
 }
 
 class DatePicker extends Component {
-  static defaultProps = {
-    onVisibleChange: f => f,
-    disabledDate: () => false,
-    calendarProps: {},
-  };
+    static defaultProps = {
+        onVisibleChange: f => f,
+        disabledDate: () => false,
+        calendarProps: {},
+        onChange: () => undefined
+    };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      value: null,
+    constructor(props) {
+        super(props);
+        this.state = {
+            visible: props.visible || false,
+            value: null,
+        }
     }
-  }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.state.visible) {
-      this.setState({visible: nextProps.visible});
+    componentWillReceiveProps(nextProps) {
+        if ('visible' in nextProps && nextProps.visible !== this.state.visible) {
+            this.setState({visible: nextProps.visible});
+        }
+
+        if (nextProps.value !== undefined) {
+            this.setState({value: nextProps.value});
+        }
     }
-  }
 
-  onVisibleChange = (visible) => {
-    this.setState({visible});
-    this.props.onVisibleChange(visible);
-  }
+    onVisibleChange = (visible) => {
+        this.setState({visible});
+        this.props.onVisibleChange(visible);
+    }
 
-  onChange = (value) => {
-    this.setState({value});
-  }
+    onSelect = (value) => {
+        this.setState({value});
+        let visible = this.props.onChange(value);
+        if (typeof visible === "boolean") {
+            this.onVisibleChange(visible);
+        } else {
+            this.onVisibleChange(false);
+        }
+    }
 
-  render() {
-    const props = this.props;
-    const state = this.state;
+    render() {
+        const props = this.props;
+        const state = this.state;
 
-    const value = state.value;
-    let classNames = classnames('date-picker', {active: props.visible}, props.className);
+        const value = state.value;
+        let classNames = classnames('date-picker', {active: props.active}, props.className);
 
-    return (
-      <Popover onVisibleChange={this.onVisibleChange} type='click' visible={state.visible}>
-        <Popover.Trigger>
-          <div className={classNames}>
-            {
-              value ? `${format(value)}` :
-                '请选择时间'
-            }
-          </div>
-        </Popover.Trigger>
-        <Popover.Content>
-          <Calendar
-            showWeekNumber={false}
-            locale={zhCN}
-            defaultValue={now}
-            selectedValue={value}
-            showToday
-            showDateInput={false}
-            showOk={false}
-            onChange={this.onChange}
-            disabledDate={props.disabledDate}
-            {...props.calendarProps}
-          />
-        </Popover.Content>
-      </Popover>
-    )
-  }
+        return (
+            <Popover onVisibleChange={this.onVisibleChange} type='click' visible={state.visible}>
+                <Popover.Trigger>
+                    <div className={classNames}>
+                        {
+                            value ? `${format(value)}` :
+                                '请选择时间'
+                        }
+                    </div>
+                </Popover.Trigger>
+                <Popover.Content>
+                    <Calendar
+                        showWeekNumber={false}
+                        locale={zhCN}
+                        defaultValue={now}
+                        selectedValue={value}
+                        showToday
+                        showDateInput={false}
+                        showOk={false}
+                        onSelect={this.onSelect}
+                        disabledDate={props.disabledDate}
+                        {...props.calendarProps}
+                    />
+                </Popover.Content>
+            </Popover>
+        )
+    }
 }
 
 export default DatePicker;

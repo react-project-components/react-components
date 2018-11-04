@@ -6,7 +6,7 @@
   opacity: 0;
   background: transparent;
   transition: opacity 0.35s var(--animation-curve-default);
-  display: inline-flex;
+  display: inline-block;
 
   &.active {
     opacity: 1;
@@ -14,21 +14,25 @@
 
 
   &-top{
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
   }
 
   &-right{
+    display: inline-flex;
     flex-direction: row-reverse;
     align-items: center;
   }
 
   &-bottom{
+    display: inline-flex;
     flex-direction: column-reverse;
     align-items: center;
   }
 
   &-left{
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
   }
@@ -43,7 +47,6 @@
   border-right: transparent;
   border-bottom: transparent;
   background: white;
-
 
 
   &-top{

@@ -7,66 +7,23 @@ class Overlay extends Component {
         visible: PropTypes.bool,
         children: PropTypes.node,
         className: PropTypes.string,
-        lockScroll: PropTypes.bool,
-        onClick: PropTypes.func,
-        onEscKeyDown: PropTypes.func,
-        theme: PropTypes.shape({
-            visible: PropTypes.string,
-            backdrop: PropTypes.string,
-            overlay: PropTypes.string,
-        }),
+        onClick: PropTypes.func
     };
 
-    static defaultProps = {
-        lockScroll: true,
-    };
+    static defaultProps = {};
 
     componentDidMount() {
-        const {visible, lockScroll, onEscKeyDown} = this.props;
-        if (onEscKeyDown) document.body.addEventListener('keydown', this.handleEscKey);
-        if (visible && lockScroll) document.body.style.overflow = 'hidden';
-    }
-
-    componentWillUpdate(nextProps) {
-        if (this.props.lockScroll) {
-            const becomingActive = nextProps.visible && !this.props.visible;
-            const becomingUnactive = !nextProps.visible && this.props.visible;
-
-            if (becomingActive) {
-                document.body.style.overflow = 'hidden';
-            }
-
-            if (becomingUnactive && !document.querySelectorAll('[data-react-toolbox="overlay"]')[1]) {
-                document.body.style.overflow = '';
-            }
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.onEscKeyDown) {
-            if (this.props.visible && !prevProps.visible) {
-                document.body.addEventListener('keydown', this.handleEscKey);
-            } else if (!this.props.visible && prevProps.visible) {
-                document.body.removeEventListener('keydown', this.handleEscKey);
-            }
+        if (document.querySelectorAll('[data-react-component="overlay"]').length <= 1) {
+            let scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = `${scrollBarWidth}px`;
         }
     }
 
     componentWillUnmount() {
-        if (this.props.visible && this.props.lockScroll) {
-            if (!document.querySelectorAll('[data-react-toolbox="overlay"]')[1]) {
-                document.body.style.overflow = '';
-            }
-        }
-
-        if (this.props.onEscKeyDown) {
-            document.body.removeEventListener('keydown', this.handleEscKey);
-        }
-    }
-
-    handleEscKey = (e) => {
-        if (this.props.visible && this.props.onEscKeyDown && e.which === 27) {
-            this.props.onEscKeyDown(e);
+        if (document.querySelectorAll('[data-react-component="overlay"]').length <= 1) {
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
         }
     }
 
@@ -79,9 +36,10 @@ class Overlay extends Component {
     }
 
     render() {
-        const {visible, className, lockScroll, onEscKeyDown, ...other} = this.props; // eslint-disable-line
+        const {visible, className, ...other} = this.props;
         return (
             <div
+                data-react-component="overlay"
                 {...other}
                 onClick={this.handleClick}
                 className={classnames('overlay', {'active': visible}, className)}/>

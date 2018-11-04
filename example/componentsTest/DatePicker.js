@@ -16,10 +16,13 @@ export default class DatePickerTest extends React.Component {
   }
 
   render() {
+
+    console.log('re render');
+
     const state = this.state;
     return (
       <div className='popover-test'>
-        <DatePicker/>
+        <DatePicker className='margin-right-md'/>
         <RangePicker onChange={this.onChange}/>
       </div>
     );

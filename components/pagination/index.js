@@ -2,7 +2,6 @@ import React from 'react';
 
 export default class Pagination extends React.Component {
   static defaultProps = {
-    current: 1,
     total: 1,
     className: '',
     onChangePage: f => f
@@ -11,13 +10,13 @@ export default class Pagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: props.current,
+      current: props.current || 1,
       total: 1,
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.current !== this.state.current) {
+    if ('current' in nextProps && nextProps.current !== this.state.current) {
       this.setState({current: nextProps.current});
     }
   }

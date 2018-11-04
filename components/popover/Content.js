@@ -7,48 +7,48 @@ import classnames from 'classnames';
 
 class Content extends Component {
     static defaultProps = {
-        getTiggerPostion: f => f,
-        setPopupContentVisible: f => f,
         className: 'popover-content',
         placement: 'bottom',
+        autoAlign: false
     }
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
+
+        this.oldWidth = -9999;
+        this.oldHeight = -9999;
     }
 
-    // componentDidMount() {
-    //     let thisDom = ReactDOM.findDOMNode(this);
-    //     this.setState({contentBoundingBox: thisDom.getBoundingClientRect()});
-    // }
-
-    componentWillReceiveProps(nextProps) {
-
-    }
-
-    componentWillUnmount() {
-
+    componentDidUpdate() {
+        if (this.props.autoAlign) {
+            this.reAlign(this);
+        }
     }
 
     contentRef = ref => {
         if (!ref) return;
-        let thisDom = ReactDOM.findDOMNode(ref);
-
-
-        console.log(' thisDom.getBoundingClientRect() ',thisDom.getBoundingClientRect());
-
-
-        let position = this.props.getContentPositionFun(thisDom.getBoundingClientRect(), this.props.placement);
-        thisDom.style.position = 'absolute';
-        thisDom.style.top = position.top + 'px';
-        thisDom.style.left = position.left + 'px';
+        this.reAlign(ref);
         this.props.contentRef(ref);
     }
 
+    reAlign = (ref) => {
+        let thisDom = ReactDOM.findDOMNode(ref);
+        let boundingBox = thisDom.getBoundingClientRect();
+        if(Math.abs(this.oldWidth - boundingBox.width) < 1 && Math.abs(this.oldHeight - boundingBox.height) < 1){
+            return;
+        }
+        this.oldWidth = boundingBox.width;
+        this.oldHeight = boundingBox.height;
+        let position = this.props.getContentPositionFun(boundingBox, this.props.placement);
+        thisDom.style.position = 'absolute';
+        thisDom.style.top = position.top + 'px';
+        thisDom.style.left = position.left + 'px';
+    }
+
+
     render() {
         const props = this.props;
-        const state = this.state;
 
         const className = classnames(props.className, {'active': props.visible});
 

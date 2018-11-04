@@ -7,21 +7,21 @@ class ToolTip extends Component {
     static defaultProps = {
         placement: 'top',
         trigger: 'hover',
-        visible: false,
+        autoAlign: false,
         onVisibleChange: f => f
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            visible: this.props.visible,
+            visible: this.props.visible || false,
             placement: this.props.placement,
             gapStyle: {} //箭头的style
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.visible !== this.state.visible) {
+        if ('visible' in nextProps && nextProps.visible !== this.state.visible) {
             this.setState({visible: nextProps.visible});
         }
     }
@@ -37,7 +37,7 @@ class ToolTip extends Component {
         if (positionCalRet.placement !== this.state.placement) {
             this.setState({placement: positionCalRet.placement});
         }
-        if (positionCalRet.offsetX !== 0 || positionCalRet.offsetY !== 0) {
+        if (positionCalRet.offsetX !== 0 || positionCalRet.offsetY !== 0 || this.props.autoAlign) {
             this.setState({
                 gapStyle: {
                     "position": 'relative',
@@ -61,6 +61,7 @@ class ToolTip extends Component {
                 </Popover.Trigger>
                 <Popover.Content
                     placement={props.placement}
+                    autoAlign={props.autoAlign}
                     className={`tooltip-wrapper tooltip-wrapper-${state.placement}`}
                     delay={100}
                 >
